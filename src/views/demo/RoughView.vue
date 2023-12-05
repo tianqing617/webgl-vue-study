@@ -36,10 +36,8 @@ onMounted(() => {
 <style scoped>
 .rough-view {
   height: 100%;
-}
-canvas {
-  /* width: 512px; */
-  /* height:256px; */
-  outline: 1px solid #ccc;
+  canvas {
+    outline: 1px solid #ccc;
+  }
 }
 </style>
