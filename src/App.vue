@@ -18,14 +18,12 @@ import { RouterLink, RouterView } from 'vue-router'
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .wrapper {
   height: 60px;
   line-height: 60px;
-  :deep(nav) {
-    a {
-      margin-right: 10px;
-    }
-  }
+}
+nav a {
+  margin-right: 10px;
 }
 </style>
