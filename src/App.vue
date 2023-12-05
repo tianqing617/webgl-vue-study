@@ -26,4 +26,7 @@ import { RouterLink, RouterView } from 'vue-router'
 nav a {
   margin-right: 10px;
 }
+.container {
+  flex: 1;
+}
 </style>
