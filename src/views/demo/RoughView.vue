@@ -1,6 +1,6 @@
 <template>
   <div class="rough-view">
-    <canvas ref="canvasRef"></canvas>
+    <canvas ref="canvasRef" width="512" height="256"></canvas>
   </div>
 </template>
 
@@ -17,11 +17,18 @@ function drawRectangle(el:HTMLCanvasElement) {
   rc.rectangle(10, 10, 80, 20); // x, y, width, height
 }
 
+function drawHill(el:HTMLCanvasElement) {
+  const rc = rough.canvas(el)
+  const hillOpts = { roughness: 2.8, strokeWidth: 2, fill: 'blue' }
+  rc.path('M76 256L176 156L276 256', hillOpts)
+}
+
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 onMounted(() => {
   console.log('ref', canvasRef)
   if (canvasRef.value) {
     drawRectangle(canvasRef.value)
+    drawHill(canvasRef.value)
   }
 })
 </script>
@@ -31,7 +38,8 @@ onMounted(() => {
   height: 100%;
 }
 canvas {
-  height: 100%;
-  width: 100%;   
+  /* width: 512px; */
+  /* height:256px; */
+  outline: 1px solid #ccc;
 }
 </style>
