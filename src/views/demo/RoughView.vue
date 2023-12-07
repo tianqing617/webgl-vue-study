@@ -40,9 +40,11 @@ function drawHill2(el:HTMLCanvasElement) {
   const hillOpts = { roughness: 2.8, strokeWidth: 2, fill: 'blue' }
   console.log('rc', rc)
   // 转换坐标系
-  // TODO: 搜索替代方案
-  rc.ctx.translate(256, 256)
-  rc.ctx.scale(1, -1)
+  const ctx = el.getContext('2d')
+  if (ctx) {
+    ctx.translate(256, 256)
+    ctx.scale(1, -1)
+  }
   
   // M 表示 Move to，L 表示 Line to
   rc.path('M-180 0L-80 100L20 0', hillOpts)
