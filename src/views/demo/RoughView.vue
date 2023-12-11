@@ -10,7 +10,6 @@
 import { onMounted, ref } from 'vue';
 import rough from 'roughjs';
 import { Vector2D } from '@/utils/lib'
-import { type PolicyVector2D } from '@/utils/types';
 
 defineOptions({
   name: 'RoughView',
@@ -22,6 +21,7 @@ function drawRectangle(el:HTMLCanvasElement) {
 }
 
 // 使用 坐标系与坐标映射 的方式
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function drawHill(el:HTMLCanvasElement) {
   const rc = rough.canvas(el)
   console.log('drawHill', rc)
@@ -65,7 +65,7 @@ function drawHill2(el:HTMLCanvasElement) {
 // 画树
 function drawBranch(
   context: CanvasRenderingContext2D,
-  v0: PolicyVector2D,
+  v0: InstanceType<typeof Vector2D>,
   length: number,
   thickness: number,
   dir: number,
@@ -101,7 +101,7 @@ function drawTree(el: HTMLCanvasElement) {
     ctx.scale(1, -1);
     ctx.lineCap = 'round';
 
-    const v0: PolicyVector2D = new Vector2D(256, 0);
+    const v0 = new Vector2D(256, 0);
     console.log('v0', v0)
     // drawBranch(ctx, v0, 50, 10, 1, 3);
     drawBranch(ctx, v0, 50, 10, Math.PI / 2, 3);
