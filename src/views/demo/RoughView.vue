@@ -1,12 +1,16 @@
 <template>
   <div class="rough-view">
     <canvas ref="canvasRef" width="512" height="256"></canvas>
+
+    <canvas ref="treeRef" width="512" height="512"></canvas>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import rough from 'roughjs';
+import { Vector2D } from '@/utils/lib'
+import { type PolicyVector2D } from '@/utils/types';
 
 defineOptions({
   name: 'RoughView',
@@ -58,7 +62,54 @@ function drawHill2(el:HTMLCanvasElement) {
   })
 }
 
+// 画树
+function drawBranch(
+  context: CanvasRenderingContext2D,
+  v0: PolicyVector2D,
+  length: number,
+  thickness: number,
+  dir: number,
+  bias: number
+) {
+  const v = new Vector2D().rotate(dir).scale(length);
+  const v1 = v0.copy().add(v);
+
+  context.lineWidth = thickness;
+  context.beginPath();
+  context.moveTo(v0.x, v0.y);
+  context.lineTo(v1.x, v1.y);
+  context.stroke();
+
+  // 递归
+  if(thickness > 2) {
+    // const left = Math.PI / 4 + 0.5 * (dir + 0.2) + bias * (Math.random() - 0.5);
+    const left = dir + 0.2
+    drawBranch(context, v1, length * 0.9, thickness * 0.8, left, bias * 0.9);
+    // const right = Math.PI / 4 + 0.5 * (dir - 0.2) + bias * (Math.random() - 0.5);
+    const right = dir - 0.2
+    drawBranch(context, v1, length * 0.9, thickness * 0.8, right, bias * 0.9);
+  }
+}
+
+function drawTree(el: HTMLCanvasElement) {
+  const ctx = el.getContext('2d');
+
+  if (ctx) {
+    // 将x轴移到canvas的底部
+    ctx.translate(0, el.height);
+    // 将y轴翻转180度
+    ctx.scale(1, -1);
+    ctx.lineCap = 'round';
+
+    const v0: PolicyVector2D = new Vector2D(256, 0);
+    console.log('v0', v0)
+    // drawBranch(ctx, v0, 50, 10, 1, 3);
+    drawBranch(ctx, v0, 50, 10, Math.PI / 2, 3);
+  }
+}
+
 const canvasRef = ref<HTMLCanvasElement | null>(null)
+const treeRef = ref<HTMLCanvasElement | null>(null)
 onMounted(() => {
   console.log('ref', canvasRef)
   if (canvasRef.value) {
@@ -66,14 +117,21 @@ onMounted(() => {
     // drawHill(canvasRef.value)
     drawHill2(canvasRef.value)
   }
+
+  if (treeRef.value) {
+    drawTree(treeRef.value)
+  }
 })
 </script>
 
 <style scoped>
 .rough-view {
   height: 100%;
+  display: flex;
+  flex-direction: column;
   canvas {
     outline: 1px solid #ccc;
+    margin-bottom: 10px;
   }
 }
 </style>
