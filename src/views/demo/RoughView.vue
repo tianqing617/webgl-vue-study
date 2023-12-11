@@ -9,6 +9,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import rough from 'roughjs';
+// @ts-ignore
 import { Vector2D } from '@/utils/lib'
 
 defineOptions({
