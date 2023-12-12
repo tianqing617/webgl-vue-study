@@ -84,11 +84,27 @@ function drawBranch(
   // 递归
   if(thickness > 2) {
     // const left = Math.PI / 4 + 0.5 * (dir + 0.2) + bias * (Math.random() - 0.5);
-    const left = dir + 0.2
+    const left = Math.PI / 4 + 0.5 * (dir + 0.2) + bias * (Math.random() - 0.5);
+    // const left = dir + 0.2
     drawBranch(context, v1, length * 0.9, thickness * 0.8, left, bias * 0.9);
     // const right = Math.PI / 4 + 0.5 * (dir - 0.2) + bias * (Math.random() - 0.5);
-    const right = dir - 0.2
+    const right = Math.PI / 4 + 0.5 * (dir - 0.2) + bias * (Math.random() - 0.5);
+    // const right = dir - 0.2
     drawBranch(context, v1, length * 0.9, thickness * 0.8, right, bias * 0.9);
+  }
+
+  // 画点
+  if(thickness < 5 && Math.random() < 0.3) {
+    context.save();
+    context.strokeStyle = '#c72c35';
+    const th = Math.random() * 6 + 3;
+    context.lineWidth = th;
+    
+    context.beginPath();
+    context.moveTo(v1.x, v1.y);
+    context.lineTo(v1.x, v1.y - 1);
+    context.stroke();
+    context.restore();
   }
 }
 
@@ -104,8 +120,8 @@ function drawTree(el: HTMLCanvasElement) {
 
     const v0 = new Vector2D(256, 0);
     console.log('v0', v0)
-    // drawBranch(ctx, v0, 50, 10, 1, 3);
-    drawBranch(ctx, v0, 50, 10, Math.PI / 2, 3);
+    drawBranch(ctx, v0, 50, 10, 1, 3);
+    // drawBranch(ctx, v0, 50, 10, Math.PI / 2, 3);
   }
 }
 
@@ -133,6 +149,9 @@ onMounted(() => {
   canvas {
     outline: 1px solid #ccc;
     margin-bottom: 10px;
+  }
+  canvas:last-of-type {
+    margin-bottom: 100px;
   }
 }
 </style>
