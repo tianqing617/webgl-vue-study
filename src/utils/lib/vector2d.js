@@ -62,8 +62,8 @@ export class Vector2D extends Array {
   }
 
   rotate(rad) {
-    const c = Math.cos(rad),
-      s = Math.sin(rad);
+    const c = Math.cos(rad);
+    const s = Math.sin(rad);
     const [x, y] = this;
 
     this.x = x * c + y * -s;
