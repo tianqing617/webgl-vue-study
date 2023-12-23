@@ -11,7 +11,7 @@ const TAU = Math.PI * 2
  */
 export function arc(x0: number, y0: number, radius: number, startAng = 0, endAng = Math.PI * 2) {
   const ang = Math.min(TAU, endAng - startAng)
-  const ret = []
+  const ret = [] as [number, number][]
   // const ret = ang === TAU ? [] : [[x0, y0]]
   const segments = Math.round(TAU_SEGMENTS * ang / TAU)
 
@@ -25,9 +25,19 @@ export function arc(x0: number, y0: number, radius: number, startAng = 0, endAng
   return ret
 }
 
+/**
+ * 画椭圆
+ * @param x0 椭圆心x坐标
+ * @param y0 椭圆心y坐标
+ * @param radiusX 长轴
+ * @param radiusY 短轴
+ * @param startAng 起始弧度
+ * @param endAng 终止弧度
+ * @returns 点坐标数组
+ */
 export function ellipse(x0: number, y0: number, radiusX: number, radiusY: number, startAng = 0, endAng = Math.PI * 2) {
   const ang = Math.min(TAU, endAng - startAng)
-  const ret = []
+  const ret = [] as [number, number][]
   // const ret = ang === TAU ? [] : [[x0, y0]]
   const segments = Math.round(TAU_SEGMENTS * ang / TAU)
 
