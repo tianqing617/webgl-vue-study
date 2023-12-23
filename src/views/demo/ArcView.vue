@@ -15,25 +15,30 @@ function drawLine(ret: [number, number][], ctx: CanvasRenderingContext2D) {
   ret.forEach(item => {
     ctx.lineTo(...item)
   })
-
-  ctx.stroke()
 }
 
 function drawArc(ctx: CanvasRenderingContext2D) {
   const ret = arc(0, 0, 100, 0, Math.PI)
   console.log('ret', ret)
-  ctx.save()
+  // ctx.save()
+  ctx.beginPath()
+  ctx.strokeStyle = 'black';
   drawLine(ret, ctx)
-  ctx.restore()
+  ctx.stroke()
+  ctx.closePath()
+  // ctx.restore()
 }
 
 function drawEllipse(ctx: CanvasRenderingContext2D) {
   const ret = ellipse(0, 0, 200, 100)
   console.log('ret', ret)
-  ctx.save()
-  ctx.strokeStyle = "red";
+  // ctx.save()
+  ctx.beginPath()
+  ctx.strokeStyle = 'blue';
   drawLine(ret, ctx)
-  ctx.restore()
+  ctx.stroke()
+  ctx.closePath()
+  // ctx.restore()
 }
 onMounted(() => {
   const ctx = canvasRef.value?.getContext('2d')
