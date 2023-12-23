@@ -9,12 +9,9 @@ import { onMounted, ref } from 'vue';
 import { arc } from '@/utils/index'
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-onMounted(() => {
-  const ctx = canvasRef.value?.getContext('2d')
-  console.log('ctx', ctx)
 
-  if (ctx) {
-    ctx.translate(256, 256)
+function drawArc(ctx: CanvasRenderingContext2D) {
+  ctx.translate(256, 256)
     ctx.scale(1, -1)
 
     const ret = arc(0, 0, 100, 0, Math.PI)
@@ -26,6 +23,12 @@ onMounted(() => {
     })
 
     ctx.stroke()
+}
+onMounted(() => {
+  const ctx = canvasRef.value?.getContext('2d')
+  console.log('ctx', ctx)
+  if (ctx) {
+    drawArc(ctx)
   }
 })
 </script>
