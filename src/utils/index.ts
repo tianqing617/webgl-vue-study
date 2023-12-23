@@ -11,7 +11,8 @@ const TAU = Math.PI * 2
  */
 export function arc(x0: number, y0: number, radius: number, startAng = 0, endAng = Math.PI * 2) {
   const ang = Math.min(TAU, endAng - startAng)
-  const ret = ang === TAU ? [] : [[x0, y0]]
+  const ret = []
+  // const ret = ang === TAU ? [] : [[x0, y0]]
   const segments = Math.round(TAU_SEGMENTS * ang / TAU)
 
   for(let i = 0; i <= segments; i++) {

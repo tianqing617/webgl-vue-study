@@ -17,7 +17,7 @@ onMounted(() => {
     ctx.translate(256, 256)
     ctx.scale(1, -1)
 
-    const ret = arc(0, 0, 100)
+    const ret = arc(0, 0, 100, 0, Math.PI)
     console.log('ret', ret)
     
     ret.forEach(item => {
