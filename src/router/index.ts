@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/rough',
       name: 'rough',
       component: () => import('../views/demo/RoughView.vue')
+    },
+    {
+      path: '/arc',
+      name: 'arc',
+      component: () => import('../views/demo/ArcView.vue')
     }
   ]
 })
