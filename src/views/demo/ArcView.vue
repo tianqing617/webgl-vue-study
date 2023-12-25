@@ -12,6 +12,7 @@ const canvasRef = ref<HTMLCanvasElement | null>(null)
 
 function drawLine(ret: [number, number][], ctx: CanvasRenderingContext2D) {
   ctx.beginPath()
+  ctx.lineWidth = 2
   ctx.moveTo(...ret[0])
   ret.forEach(item => {
     ctx.lineTo(...item)
@@ -21,7 +22,8 @@ function drawLine(ret: [number, number][], ctx: CanvasRenderingContext2D) {
 }
 
 function drawArc(ctx: CanvasRenderingContext2D) {
-  const ret = arc(0, 0, 100, 0, Math.PI)
+  // const ret = arc(0, 0, 100, 0, Math.PI)
+  const ret = arc(0, 0, 100, 0, Math.PI * 2)
   console.log('ret', ret)
   // ctx.save()
   // 开始一个新的路径
