@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { arc, ellipse, parabola } from '@/utils/index'
+import { arc, ellipse, parabola, parametric } from '@/utils/index'
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 
@@ -47,6 +47,15 @@ function drawParabola(ctx: CanvasRenderingContext2D) {
   drawLine(ret, ctx)
 }
 
+function drawHelix(ctx: CanvasRenderingContext2D) {
+  const helical = parametric(
+    (t: number, l: number) => l * t * Math.cos(t),
+    (t: number, l: number) => l * t * Math.sin(t),
+  )
+
+  helical(0, 50, 500, 5).draw(ctx, { strokeStyle: 'purple' })
+}
+
 onMounted(() => {
   const ctx = canvasRef.value?.getContext('2d')
   // console.log('ctx', ctx)
@@ -58,6 +67,7 @@ onMounted(() => {
     drawArc(ctx)
     drawEllipse(ctx)
     drawParabola(ctx)
+    drawHelix(ctx)
   }
 })
 </script>
