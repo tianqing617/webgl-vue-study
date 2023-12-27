@@ -6,6 +6,8 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+// @ts-ignore
+import { Vector2D } from '@/utils/lib'
 import { arc, ellipse, parabola, parametric } from '@/utils/index'
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
@@ -58,6 +60,19 @@ function drawHelix(ctx: CanvasRenderingContext2D) {
   helical(0, 50, 500, 5).draw(ctx, { strokeStyle: 'purple' })
 }
 
+function drawBezier(ctx: CanvasRenderingContext2D) {
+  const quadricBezier = parametric(
+   (t: number, [{ x: x0 }, { x: x1 }, { x: x2 }]: any) => (1 - t) ** 2 * x0 + 2 * t * (1 - t) * x1 + t ** 2 * x2,
+   (t: number, [{ y: y0 }, { y: y1 }, { y: y2 }]: any) => (1 - t) ** 2 * y0 + 2 * t * (1 - t) * y1 + t ** 2 * y2,
+  )
+
+  const p0 = new Vector2D(0, 0)
+  const p1 = new Vector2D(100, 0).rotate(0.75)
+  const p2 = new Vector2D(200, 0)
+
+  quadricBezier(0, 1, 100, [p0, p1, p2]).draw(ctx, { strokeStyle: 'green' })
+}
+
 onMounted(() => {
   const ctx = canvasRef.value?.getContext('2d')
   // console.log('ctx', ctx)
@@ -70,6 +85,7 @@ onMounted(() => {
     drawEllipse(ctx)
     drawParabola(ctx)
     drawHelix(ctx)
+    drawBezier(ctx)
   }
 })
 </script>
