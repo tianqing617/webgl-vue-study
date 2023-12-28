@@ -8,6 +8,7 @@
 import { onMounted, ref } from 'vue';
 // @ts-ignore
 import { Vector2D } from '@/utils/lib'
+import { draw } from '@/utils';
 // import { draw } from '@/utils/index'
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
@@ -24,6 +25,11 @@ function generatePoints() {
 function drawStar(ctx: CanvasRenderingContext2D) {
   const polygon = generatePoints()
   console.log('polygon', polygon)
+
+  ctx.save()
+  ctx.translate(-128, 0)
+  draw(polygon, ctx, { close: true })
+  ctx.restore()
 }
 
 onMounted(() => {

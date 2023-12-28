@@ -25,7 +25,7 @@ export function draw(
       context.fillStyle = fillStyle
       context.fill()
     }
-
+    
     context.stroke()
 }
 
