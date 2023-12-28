@@ -10,6 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/rough">Rough</RouterLink>
         <RouterLink to="/arc">曲线</RouterLink>
+        <RouterLink to="/triangle">三角剖分</RouterLink>
       </nav>
     </div>
   </header>

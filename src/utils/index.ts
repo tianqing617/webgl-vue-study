@@ -1,4 +1,4 @@
-export { parametric } from './curve'
+export { parametric, draw } from './curve'
 
 const TAU_SEGMENTS = 60
 const TAU = Math.PI * 2

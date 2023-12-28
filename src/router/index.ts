@@ -26,6 +26,11 @@ const router = createRouter({
       path: '/arc',
       name: 'arc',
       component: () => import('../views/demo/ArcView.vue')
+    },
+    {
+      path: '/triangle',
+      name: 'triangle',
+      component: () => import('../views/demo/TriangleView.vue')
     }
   ]
 })

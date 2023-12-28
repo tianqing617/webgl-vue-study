@@ -4,7 +4,7 @@
  * @param context Canvas上下文对象
  * @param param2 绘制参数
  */
-function draw(
+export function draw(
   points: [number, number][],
   context: CanvasRenderingContext2D,
   {

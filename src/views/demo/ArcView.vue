@@ -1,5 +1,5 @@
 <template>
-  <div class="rough-view">
+  <div class="arc-view">
     <canvas ref="canvasRef" width="512" height="512"></canvas>
   </div>
 </template>
