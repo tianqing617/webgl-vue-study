@@ -9,8 +9,9 @@ export function draw(
   context: CanvasRenderingContext2D,
   {
     strokeStyle = 'black',
-    fillStyle = null,
+    fillStyle = '',
     close = false,
+    rule = 'nonzero',
   } = {}) {
     context.strokeStyle = strokeStyle
     context.beginPath()
@@ -23,7 +24,7 @@ export function draw(
     if (close) context.closePath()
     if (fillStyle) {
       context.fillStyle = fillStyle
-      context.fill()
+      context.fill(rule as CanvasFillRule)
     }
     
     context.stroke()

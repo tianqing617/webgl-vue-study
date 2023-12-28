@@ -44,7 +44,7 @@ function drawStart(ctx: CanvasRenderingContext2D) {
 
   ctx.save()
   ctx.translate(128, 0)
-  draw(starts, ctx, { close: true })
+  draw(starts, ctx, { close: true, fillStyle: 'black', rule: 'evenodd' })
   ctx.restore()
 }
 
