@@ -22,13 +22,29 @@ function generatePoints() {
 
   return points
 }
-function drawStar(ctx: CanvasRenderingContext2D) {
+function drawPentagon(ctx: CanvasRenderingContext2D) {
   const polygon = generatePoints()
   console.log('polygon', polygon)
 
   ctx.save()
   ctx.translate(-128, 0)
   draw(polygon, ctx, { close: true })
+  ctx.restore()
+}
+
+function drawStart(ctx: CanvasRenderingContext2D) {
+  const polygon = generatePoints()
+  const starts = [
+    polygon[0],
+    polygon[2],
+    polygon[4],
+    polygon[1],
+    polygon[3],
+  ]
+
+  ctx.save()
+  ctx.translate(128, 0)
+  draw(starts, ctx, { close: true })
   ctx.restore()
 }
 
@@ -40,7 +56,8 @@ onMounted(() => {
     ctx.translate(256, 256)
     ctx.scale(1, -1)
 
-    drawStar(ctx)
+    drawPentagon(ctx)
+    drawStart(ctx)
   }
 })
 </script>
