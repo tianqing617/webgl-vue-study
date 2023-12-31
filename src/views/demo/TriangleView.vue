@@ -7,20 +7,19 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 // @ts-ignore
-import { Vector2D } from '@/utils/lib'
-import { draw } from '@/utils';
+import { draw, Vector2D } from '@/utils';
 // import { draw } from '@/utils/index'
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 
 function generatePoints() {
-  const points = [ new Vector2D(0, 100)]
+  const points = [new Vector2D(0, 100)]
   for(let i = 1; i <= 4; i++) {
     const p = points[0].copy().rotate(i * Math.PI * 0.4)
     points.push(p)
   }
 
-  return points
+  return points.map(item => item.location)
 }
 function drawPentagon(ctx: CanvasRenderingContext2D) {
   const polygon = generatePoints()
