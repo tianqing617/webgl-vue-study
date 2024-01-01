@@ -15,3 +15,5 @@ export interface PolicyVector2D {
   normalize(): number
   rotate(rad: number): PolicyVector2D
 }
+
+export type PolicyCoordinateArray = [number, number][]
