@@ -1,3 +1,4 @@
+// 2D向量对象封装
 import type { PolicyVector2D } from './types'
 
 export class Vector2D extends Array {

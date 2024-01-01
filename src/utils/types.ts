@@ -1,3 +1,5 @@
+// 类型文件
+
 export interface PolicyVector2D {
   x: number
   y: number
