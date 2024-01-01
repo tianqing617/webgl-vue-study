@@ -6,9 +6,9 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-// @ts-ignore
-import { draw, Vector2D } from '@/utils';
-// import { draw } from '@/utils/index'
+import earcut from 'earcut'
+import { draw, Vector2D, isPointInPath } from '@/utils';
+
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 
@@ -21,9 +21,18 @@ function generatePoints() {
 
   return points.map(item => item.location)
 }
+
+// 画多边形
 function drawPentagon(ctx: CanvasRenderingContext2D) {
   const polygon = generatePoints()
   console.log('polygon', polygon)
+
+  // 判断点是否在多边形内
+  const cells = earcut(polygon.flat())
+  console.log('cells', cells)
+  const mousePoints = new Vector2D(1000, 0)
+  const result = isPointInPath(polygon, cells, mousePoints)
+  console.log('result',result)
 
   ctx.save()
   ctx.translate(-128, 0)
@@ -31,6 +40,7 @@ function drawPentagon(ctx: CanvasRenderingContext2D) {
   ctx.restore()
 }
 
+// 画五角星
 function drawStart(ctx: CanvasRenderingContext2D) {
   const polygon = generatePoints()
   const starts = [
@@ -48,6 +58,7 @@ function drawStart(ctx: CanvasRenderingContext2D) {
 }
 
 onMounted(() => {
+  console.log('earcut', earcut)
   const ctx = canvasRef.value?.getContext('2d')
 
   if (ctx) {
