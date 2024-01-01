@@ -4,7 +4,6 @@
       ref="canvasRef"
       width="512"
       height="512"
-      @mousemove="handleMove"
     />
   </div>
 </template>
@@ -45,18 +44,18 @@ function drawPentagon(ctx: CanvasRenderingContext2D) {
   ctx.restore()
 }
 
-function handleMove(event: MouseEvent) {
+function handleMove(event: MouseEvent, ctx: CanvasRenderingContext2D) {
   console.log('event',event)
   // 坐标转换
   const offsetX = event.x - 256
   const offsetY = -(event.y - 256)
   
-  const ctx = (event.target as HTMLCanvasElement).getContext('2d')
+  // const ctx = (event.target as HTMLCanvasElement).getContext('2d')
   console.log(offsetX, offsetY, ctx)
   if (ctx) {
     // TODO: 清除左侧多边形，未生效
-    // ctx.clearRect(-256, -256, 512, 512)
-    // ctx.clearRect(-256, 256, 256, 256)
+    ctx.clearRect(0, 0, 256, 256)
+    ctx.clearRect(-256, 256, 256, 512)
   }
 }
 
@@ -93,6 +92,9 @@ onMounted(() => {
 
     drawPentagon(ctx)
     drawStart(ctx)
+
+    // 注册鼠标移动事件
+    canvasRef.value?.addEventListener('mousemove', (event) => handleMove(event, ctx))
   }
 })
 </script>
