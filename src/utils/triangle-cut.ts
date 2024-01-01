@@ -1,5 +1,9 @@
 // 三角剖分相关方法
-import type { PolicyVector2D } from './types'
+import { Vector2D } from './vector2d'
+import type {
+  // PolicyVector2D,
+  PolicyCoordinateArray
+} from './types'
 
 /**
  * 判断一个点，是否在三角形内，含三角形的边上
@@ -10,10 +14,10 @@ import type { PolicyVector2D } from './types'
  * @returns 布尔值，是否在三角形内
  */
 export function inTriangle(
-  p1: PolicyVector2D,
-  p2: PolicyVector2D,
-  p3: PolicyVector2D,
-  point: PolicyVector2D,
+  p1: Vector2D,
+  p2: Vector2D,
+  p3: Vector2D,
+  point: Vector2D,
 ) {
   // 三角形的，三个边向量
   const a = p2.copy().sub(p1)
@@ -40,4 +44,30 @@ export function inTriangle(
   if (s3 === 0 && p >= 0 && p <= 1) return true
 
   return s1 === s2 && s2 === s3
+}
+
+/**
+ * 根据三角剖分的结果，判断一个点，是否在三角形内
+ * @param polygon vertices：多边形坐标集合；cells：三角剖分后的结果
+ * @param point 一个点坐标
+ * @returns 一个点，是否在多边形内
+ */
+export function isPointInPath(
+  vertices: PolicyCoordinateArray,
+  cells : number[], // [1, 5, 3] 表示三角形第1个、第5个、第3个，剖分的三角形
+  point: Vector2D,
+) {
+  let ret = false
+  for(let i = 0; i < cells.length; i += 3) {
+    const p1 = new Vector2D(...vertices[cells[i]])
+    const p2 = new Vector2D(...vertices[cells[i + 1]])
+    const p3 = new Vector2D(...vertices[cells[i + 2]])
+
+    if (inTriangle(p1, p2, p3, point)) {
+      ret = true
+      break
+    }
+  }
+
+  return ret
 }
