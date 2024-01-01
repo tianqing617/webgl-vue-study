@@ -1,5 +1,5 @@
 // 2D向量对象封装
-import type { PolicyVector2D } from './types'
+// import type { Vector2D } from './types'
 
 export class Vector2D extends Array {
   constructor(x = 1, y = 0) {
@@ -39,13 +39,13 @@ export class Vector2D extends Array {
     return new Vector2D(this.x, this.y);
   }
 
-  add(v: PolicyVector2D) {
+  add(v: Vector2D) {
     this.x += v.x;
     this.y += v.y;
     return this;
   }
 
-  sub(v: PolicyVector2D) {
+  sub(v: Vector2D) {
     this.x -= v.x;
     this.y -= v.y;
     return this;
@@ -57,11 +57,11 @@ export class Vector2D extends Array {
     return this;
   }
 
-  cross(v: PolicyVector2D) {
+  cross(v: Vector2D) {
     return this.x * v.y - v.x * this.y;
   }
 
-  dot(v: PolicyVector2D) {
+  dot(v: Vector2D) {
     return this.x * v.x + v.y * this.y;
   }
 
