@@ -54,8 +54,8 @@ function handleMove(event: MouseEvent, ctx: CanvasRenderingContext2D) {
   console.log(offsetX, offsetY, ctx)
   if (ctx) {
     // TODO: 清除左侧多边形，未生效
-    ctx.clearRect(0, 0, 256, 256)
-    ctx.clearRect(-256, 256, 256, 512)
+    // ctx.clearRect(0, 0, 256, 256)
+    ctx.clearRect(-256, -256, 256, 512)
   }
 }
 
