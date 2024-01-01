@@ -1,6 +1,11 @@
 <template>
   <div class="triangle-view">
-    <canvas ref="canvasRef" width="512" height="512"></canvas>
+    <canvas
+      ref="canvasRef"
+      width="512"
+      height="512"
+      @mousemove="handleMove"
+    />
   </div>
 </template>
 
@@ -40,6 +45,21 @@ function drawPentagon(ctx: CanvasRenderingContext2D) {
   ctx.restore()
 }
 
+function handleMove(event: MouseEvent) {
+  console.log('event',event)
+  // 坐标转换
+  const offsetX = event.x - 256
+  const offsetY = -(event.y - 256)
+  
+  const ctx = (event.target as HTMLCanvasElement).getContext('2d')
+  console.log(offsetX, offsetY, ctx)
+  if (ctx) {
+    // TODO: 清除左侧多边形，未生效
+    // ctx.clearRect(-256, -256, 512, 512)
+    // ctx.clearRect(-256, 256, 256, 256)
+  }
+}
+
 // 画五角星
 function drawStart(ctx: CanvasRenderingContext2D) {
   const polygon = generatePoints()
@@ -65,6 +85,11 @@ onMounted(() => {
     // 转换坐标系
     ctx.translate(256, 256)
     ctx.scale(1, -1)
+
+    // 获取圆心
+    ctx.arc(0, 0, 10, 0, Math.PI * 2)
+    ctx.fillStyle = "red"
+    ctx.fill()
 
     drawPentagon(ctx)
     drawStart(ctx)
