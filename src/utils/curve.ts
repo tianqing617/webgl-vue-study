@@ -11,10 +11,12 @@ export function draw(
   {
     strokeStyle = 'black',
     fillStyle = '',
+    lineWidth = 1,
     close = false,
     rule = 'nonzero',
   } = {}) {
     context.strokeStyle = strokeStyle
+    context.lineWidth = lineWidth
     context.beginPath()
     context.moveTo(...points[0])
 

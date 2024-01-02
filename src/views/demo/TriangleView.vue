@@ -32,14 +32,14 @@ function generatePoints() {
 }
 
 // 画多边形
-function drawPentagon(ctx: CanvasRenderingContext2D, fillStyle?: string) {
+function drawPentagon(ctx: CanvasRenderingContext2D, fillStyle?: string, strokeStyle?: string) {
   const polygon = generatePoints()
   console.log('polygon', polygon)
 
   ctx.save()
   // 将图案往左移一点、
   // ctx.translate(-128, 0)
-  draw(polygon, ctx, { close: true, fillStyle })
+  draw(polygon, ctx, { close: true, lineWidth: 4, fillStyle, strokeStyle })
   ctx.restore()
 }
 
@@ -62,9 +62,9 @@ function handleMove(event: MouseEvent, ctx: CanvasRenderingContext2D) {
     ctx.clearRect(-256, -256, 512, 512)
     if (result) {
       //清除左侧多边形
-      drawPentagon(ctx, 'red')
+      drawPentagon(ctx, 'red', 'lawngreen')
     } else {
-      drawPentagon(ctx)
+      drawPentagon(ctx, '', 'lawngreen')
     }
   }
 }
