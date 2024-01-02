@@ -9,9 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import earcut from 'earcut'
-import { draw, Vector2D, isPointInPath } from '@/utils';
+import { draw, Vector2D, isPointInPath } from '@/utils'
 
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
@@ -27,20 +27,21 @@ function generatePoints() {
 }
 
 // 画多边形
-function drawPentagon(ctx: CanvasRenderingContext2D) {
+function drawPentagon(ctx: CanvasRenderingContext2D, fillStyle: string) {
   const polygon = generatePoints()
   console.log('polygon', polygon)
 
   // 判断点是否在多边形内
-  const cells = earcut(polygon.flat())
+  /* const cells = earcut(polygon.flat())
   console.log('cells', cells)
   const mousePoints = new Vector2D(1000, 0)
   const result = isPointInPath(polygon, cells, mousePoints)
-  console.log('result',result)
+  console.log('result',result) */
 
   ctx.save()
+  // 将图案往左移一点、
   ctx.translate(-128, 0)
-  draw(polygon, ctx, { close: true })
+  draw(polygon, ctx, { close: true, fillStyle })
   ctx.restore()
 }
 
@@ -53,9 +54,9 @@ function handleMove(event: MouseEvent, ctx: CanvasRenderingContext2D) {
   // const ctx = (event.target as HTMLCanvasElement).getContext('2d')
   console.log(offsetX, offsetY, ctx)
   if (ctx) {
-    // TODO: 清除左侧多边形，未生效
-    // ctx.clearRect(0, 0, 256, 256)
+    //清除左侧多边形
     ctx.clearRect(-256, -256, 256, 512)
+    drawPentagon(ctx, 'red')
   }
 }
 
