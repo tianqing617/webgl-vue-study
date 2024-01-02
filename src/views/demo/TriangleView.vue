@@ -27,36 +27,40 @@ function generatePoints() {
 }
 
 // 画多边形
-function drawPentagon(ctx: CanvasRenderingContext2D, fillStyle: string) {
+function drawPentagon(ctx: CanvasRenderingContext2D, fillStyle?: string) {
   const polygon = generatePoints()
   console.log('polygon', polygon)
 
-  // 判断点是否在多边形内
-  /* const cells = earcut(polygon.flat())
-  console.log('cells', cells)
-  const mousePoints = new Vector2D(1000, 0)
-  const result = isPointInPath(polygon, cells, mousePoints)
-  console.log('result',result) */
-
   ctx.save()
   // 将图案往左移一点、
-  ctx.translate(-128, 0)
+  // ctx.translate(-128, 0)
   draw(polygon, ctx, { close: true, fillStyle })
   ctx.restore()
 }
 
 function handleMove(event: MouseEvent, ctx: CanvasRenderingContext2D) {
-  console.log('event',event)
+  // console.log('event', event, event.x, event.y)
   // 坐标转换
-  const offsetX = event.x - 256
-  const offsetY = -(event.y - 256)
+  const offsetX = event.offsetX - 256
+  const offsetY = -(event.offsetY - 256)
   
   // const ctx = (event.target as HTMLCanvasElement).getContext('2d')
-  console.log(offsetX, offsetY, ctx)
+  console.log(offsetX, offsetY)
   if (ctx) {
-    //清除左侧多边形
-    ctx.clearRect(-256, -256, 256, 512)
-    drawPentagon(ctx, 'red')
+    // 判断点是否在多边形内
+    const polygon = generatePoints()
+    const cells = earcut(polygon.flat())
+    console.log('cells', cells)
+    const mousePoints = new Vector2D(offsetX, offsetY)
+    const result = isPointInPath(polygon, cells, mousePoints)
+    console.log('result', result)
+    ctx.clearRect(-256, -256, 512, 512)
+    if (result) {
+      //清除左侧多边形
+      drawPentagon(ctx, 'red')
+    } else {
+      drawPentagon(ctx)
+    }
   }
 }
 
@@ -72,7 +76,7 @@ function drawStart(ctx: CanvasRenderingContext2D) {
   ]
 
   ctx.save()
-  ctx.translate(128, 0)
+  ctx.translate(150, 150)
   draw(starts, ctx, { close: true, fillStyle: 'black', rule: 'evenodd' })
   ctx.restore()
 }
