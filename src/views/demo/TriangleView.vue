@@ -11,7 +11,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import earcut from 'earcut'
-import { draw, Vector2D, isPointInPath } from '@/utils'
+import {
+  draw,
+  Vector2D,
+  isPointInPath,
+  confirmCenter,
+} from '@/utils'
 
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
@@ -90,10 +95,7 @@ onMounted(() => {
     ctx.translate(256, 256)
     ctx.scale(1, -1)
 
-    // 获取圆心
-    ctx.arc(0, 0, 10, 0, Math.PI * 2)
-    ctx.fillStyle = "red"
-    ctx.fill()
+    confirmCenter(ctx)
 
     drawPentagon(ctx)
     drawStart(ctx)

@@ -1,6 +1,7 @@
 export { parametric, draw } from './curve'
 export { Vector2D } from './vector2d'
 export { isPointInPath } from './triangle-cut'
+export { confirmCenter } from './tools'
 
 const TAU_SEGMENTS = 60
 const TAU = Math.PI * 2
