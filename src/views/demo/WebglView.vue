@@ -121,26 +121,33 @@ function welcomeTriangle(gl: WebGLRenderingContext) {
     varying float vP;
 
     void main() {
+      // 当前动画进度
       float p = min(1.0, u_time / u_duration);
       float rad = u_rotation + 3.14 * 10.0 * p;
+      // 绽放比例
       float scale = u_scale * p * (2.0 - p);
+      // 二维向量
       vec2 offset = 2.0 * u_dir * p * p;
+      // 偏移矩阵
       mat3 translateMatrix = mat3(
         1.0, 0.0, 0.0,
         0.0, 1.0, 0.0,
         offset.x, offset.y, 1.0
       );
+      // 旋转矩阵
       mat3 rotateMatrix = mat3(
         cos(rad), sin(rad), 0.0,
         -sin(rad), cos(rad), 0.0,
         0.0, 0.0, 1.0
       );
+      // 绽放矩阵
       mat3 scaleMatrix = mat3(
         scale, 0.0, 0.0,
         0.0, scale, 0.0,
         0.0, 0.0, 1.0
       );
       gl_PointSize = 1.0;
+      // 仿射变换
       vec3 pos = translateMatrix * rotateMatrix * scaleMatrix * vec3(position, 1.0);
       gl_Position = vec4(pos, 1.0);
       vP = p;
@@ -153,7 +160,7 @@ function welcomeTriangle(gl: WebGLRenderingContext) {
     uniform vec4 u_color;
 
     varying float vP;
-
+    // 片元着色器中，给三角形着色
     void main()
     {
       gl_FragColor.xyz = u_color.xyz;
@@ -221,7 +228,11 @@ function welcomeTriangle(gl: WebGLRenderingContext) {
   }
 
   let triangles: PolicyRandomTriangle[] = [];
-  //
+  /**
+   * 使用requestAnimationFrame实现动画
+   * 1. 每次新建数个随机三角形，然后依次修改所有三角形的u_item(始终时间)属性
+   * 2. 通过setUniforms方法将修改属性更新到shader中
+   */
   function update() {
     for(let i = 0; i < 5 * Math.random(); i++) {
       triangles.push(randomTriangles());
