@@ -67,7 +67,7 @@ function helloWorld(gl: WebGLRenderingContext) {
 
     // 4. 将缓冲区数据读取到 GPU
     // 4.1 将 buffer 的数据绑定给顶点着色器的 position 变量
-    // 获取顶点着色器中的position变量的地址
+    // 获取顶点着色器中的position变量的内存地址，即指针
     const vPosition = gl.getAttribLocation(program, 'position');
     // 给变量设置长度和类型
     gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0);
