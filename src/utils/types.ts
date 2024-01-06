@@ -17,3 +17,13 @@ export interface PolicyVector2D {
 }
 
 export type PolicyCoordinateArray = [number, number][]
+
+export type PolicyRandomTriangle = {
+  u_color: number[]
+  u_rotation: number
+  u_scale: number
+  u_time: number
+  u_duration: number
+  u_dir: number[]
+  startTime: number
+}
