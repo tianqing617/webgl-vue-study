@@ -15,7 +15,16 @@ function helloWorld(gl: WebGLRenderingContext) {
     // 以下代码是：创建两个着色器（Shader）
     // 顶点着色器（Vertex Shader）负责处理图形的顶点信息，
     // 片元着色器（Fragment Shader）负责处理图形的像素信息。
-    // 在 GLSL 中，attribute 表示声明变量，vec2 是变量的类型，它表示一个二维向量，position 是变量名
+    /**
+     * webGL语法说明(attribute)：
+     * 1. 在 GLSL 中，attribute 表示声明顶点相关的变量，vec2 是变量的类型，它表示一个二维向量，position 是变量名
+     * 2. attribute变量是对应于顶点的，几何图形有几个顶点，就要提供几份attribute数据
+     * 3. attribute变量只能在顶点着色器中使用，如果要在片元着色器中使用，需要通过varying变量将它传给片元着色器
+     * 
+     * webGL语法说明(uniform)：在welcomeTriangle方法中使用
+     * 1. uniform声明的变量和其他语言中的常量一样，赋值给uniform变量的值在shader执行的过程中不可改变。
+     * 2. uniform变量既可以在顶点着色器中使用，也可以在片元着色器中使用
+     */
     const vertex = `
       attribute vec2 position;
       varying vec3 color;
@@ -84,17 +93,17 @@ function helloWorld(gl: WebGLRenderingContext) {
 }
 
 // 练习二，欢迎三角形彩带
-
+// 创建随机三角形属性的函数
 function randomTriangles(): PolicyRandomTriangle {
   const u_color = [Math.random(), Math.random(), Math.random(), 1.0]; // 随机颜色
   const u_rotation = Math.random() * Math.PI; // 初始旋转角度
   const u_scale = Math.random() * 0.05 + 0.03; // 初始大小
-  const u_time = 0;
+  const u_time = 0; // 初始时间
   const u_duration = 3.0; // 持续3秒钟
 
   const rad = Math.random() * Math.PI * 2;
   const u_dir = [Math.cos(rad), Math.sin(rad)]; // 运动方向
-  const startTime = performance.now();
+  const startTime = performance.now(); // 创建时间
 
   return { u_color, u_rotation, u_scale, u_time, u_duration, u_dir, startTime };
 }
@@ -180,9 +189,16 @@ function welcomeTriangle(gl: WebGLRenderingContext) {
   gl.enableVertexAttribArray(vPosition);
 
   /**
+   * 将随机三角形信息传给shader里的uniform变量
+   * @param gl webgl上下文
+   * @param param1 随机三角形属性的参数
    * 
-   * @param gl 
-   * @param param1 
+   * uniform相关方法说明：
+   * 1. gl.uniform1f 传入一个浮点数，对应的uniform变量的类型为float
+   * 2. gl.uniform4f 传入四个浮点数，对应的uniform变量的类型为float[4]
+   * 3. gl.uniform3fv 传入一个三维向量，对应的uniform变量类型为vec3
+   * 4. gl.uniformMatrix4fv 传入一个4*4的矩阵，对应的uniform变量类型为mat4
+   * 参考地址：https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform
    */
   function setUniforms(gl: WebGLRenderingContext, { u_color, u_rotation, u_scale, u_time, u_duration, u_dir }: PolicyRandomTriangle) {
     let loc = gl.getUniformLocation(program, 'u_color');

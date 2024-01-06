@@ -19,11 +19,11 @@ export interface PolicyVector2D {
 export type PolicyCoordinateArray = [number, number][]
 
 export type PolicyRandomTriangle = {
-  u_color: number[]
-  u_rotation: number
-  u_scale: number
-  u_time: number
-  u_duration: number
-  u_dir: number[]
-  startTime: number
+  u_color: number[] // 颜色
+  u_rotation: number // 初始旋转角度
+  u_scale: number // 初始大小
+  u_time: number // 初始时间
+  u_duration: number // 动画持续时间
+  u_dir: number[] // 运动方向
+  startTime: number // 创建时间
 }
