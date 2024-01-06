@@ -18,6 +18,11 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/webgl',
+      name: 'webgl',
+      component: () => import('../views/demo/WebglView.vue')
+    },
+    {
       path: '/rough',
       name: 'rough',
       component: () => import('../views/demo/RoughView.vue')

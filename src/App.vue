@@ -11,6 +11,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/rough">Rough</RouterLink>
         <RouterLink to="/arc">曲线</RouterLink>
         <RouterLink to="/triangle">三角剖分</RouterLink>
+        <RouterLink to="/webgl">WebGL</RouterLink>
       </nav>
     </div>
   </header>
