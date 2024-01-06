@@ -77,7 +77,7 @@ function helloWorld(gl: WebGLRenderingContext) {
     // 5. 执行着色器程序完成绘制
     gl.clear(gl.COLOR_BUFFER_BIT); // 当前画布的内容清除
     // 绘制模式：以三角形为图元、绘制的顶点偏移量、顶点数量
-    // TODO: 顶点数量，为什么是 points.length / 2，不是3吗？debug调试
+    // points.length是6，故需要除2，得3
     gl.drawArrays(gl.TRIANGLES, 0, points.length / 2);
 }
 
