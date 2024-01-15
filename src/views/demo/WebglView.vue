@@ -24,6 +24,10 @@ function helloWorld(gl: WebGLRenderingContext) {
      * webGL语法说明(uniform)：在welcomeTriangle方法中使用
      * 1. uniform声明的变量和其他语言中的常量一样，赋值给uniform变量的值在shader执行的过程中不可改变。
      * 2. uniform变量既可以在顶点着色器中使用，也可以在片元着色器中使用
+     * 
+     * webGL内置变量(gl_PointSize)：用于设置绘制点的大小。（gl_PointSize = 10.0; 设置点的大小为10个像素）
+     * webGL内置变量(gl_Position)：它在顶点着色器中用于指定顶点的裁剪空间坐标。
+     *  - 裁剪空间是一个四维坐标系（x、y、z、w），其中 x、y 和 z 分别表示三维空间中的坐标，而 w 是一个齐次坐标。
      */
     const vertex = `
       attribute vec2 position;
