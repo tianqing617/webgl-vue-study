@@ -5,8 +5,9 @@
 </template>
 
 <script setup lang="ts">
+// 此库没有typescript类型
 import GlRenderer from 'gl-renderer'
-import { onMounted, ref, render } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const vertex = `
   attribute vec2 a_vertexPosition;
