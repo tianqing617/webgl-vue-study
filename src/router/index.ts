@@ -36,6 +36,11 @@ const router = createRouter({
       path: '/triangle',
       name: 'triangle',
       component: () => import('../views/demo/TriangleView.vue')
+    },
+    {
+      path: '/grids',
+      name: 'grids',
+      component: () => import('../views/demo/GridsView.vue')
     }
   ]
 })
