@@ -76,7 +76,7 @@ function drawGrids(canvas: HTMLCanvasElement) {
 
 onMounted(() => {
   // 1. 创建webgl上下文
-  console.log('GlRenderer', GlRenderer)
+  console.log('GlRenderer', new GlRenderer(canvasRef.value))
   if (canvasRef.value) drawGrids(canvasRef.value)
 })
 </script>
