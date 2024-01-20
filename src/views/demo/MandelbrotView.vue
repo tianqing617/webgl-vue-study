@@ -28,7 +28,7 @@ const vertex = `
 /**
  * precision mediump float 表示使用中等精度的浮点数进行计算
  */
-// TODO: 片源着色器的main方法内的代码，都不太理解。
+// TODO: 片元着色器的main方法内的代码，都不太理解。
 const fragment = `
   #ifdef GL_ES
   precision highp float;
