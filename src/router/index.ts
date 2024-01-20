@@ -41,6 +41,11 @@ const router = createRouter({
       path: '/grids',
       name: 'grids',
       component: () => import('../views/demo/GridsView.vue')
+    },
+    {
+      path: '/mandelbrot',
+      name: 'mandelbrot',
+      component: () => import('../views/demo/MandelbrotView.vue')
     }
   ]
 })

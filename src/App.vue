@@ -13,6 +13,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/triangle">三角剖分</RouterLink>
         <RouterLink to="/webgl">WebGL</RouterLink>
         <RouterLink to="/grids">Grids</RouterLink>
+        <RouterLink to="/mandelbrot">Mandelbrot</RouterLink>
       </nav>
     </div>
   </header>
