@@ -24,7 +24,9 @@ const vertex = `
   }
 `;
 
-// precision mediump float 表示使用中等精度的浮点数进行计算
+/**
+ * precision mediump float 表示使用中等精度的浮点数进行计算
+ */
 const fragment = `
   #ifdef GL_ES
   precision highp float;
@@ -64,9 +66,9 @@ const fragment = `
           break;
         }
       }
-      // gl_FragColor.rgb = escaped ? vec3(1.0) : vec3(0.0);
-      gl_FragColor.rgb = escaped ? max(1.0, log(scale)) * palette(float(j)/ float(iterations), vec3(0.02, 0.02, 0.03), vec3(0.1, 0.2, 0.3), vec3(0.0, 0.3, 0.2), vec3(0.0, 0.5, 0.8))
-          : vec3(0.0);
+      gl_FragColor.rgb = escaped ? vec3(1.0) : vec3(0.0);
+      // gl_FragColor.rgb = escaped ? vec3(float(j)) / float(iterations) : vec3(0.0);
+      // gl_FragColor.rgb = escaped ? max(1.0, log(scale)) * palette(float(j)/ float(iterations), vec3(0.02, 0.02, 0.03), vec3(0.1, 0.2, 0.3), vec3(0.0, 0.3, 0.2), vec3(0.0, 0.5, 0.8)) : vec3(0.0);
       gl_FragColor.a = 1.0;
   }
 `;
