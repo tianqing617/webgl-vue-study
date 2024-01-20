@@ -11,6 +11,7 @@
 import GlRenderer from 'gl-renderer'
 import { onMounted, ref } from 'vue'
 
+// TODO: a_vertexPosition 是什么，值是从那里传给它的。gl_Position = vec4(a_vertexPosition, 1, 1);是什么意思？
 const vertex = `
   attribute vec2 a_vertexPosition;
   attribute vec2 uv;
@@ -27,6 +28,7 @@ const vertex = `
 /**
  * precision mediump float 表示使用中等精度的浮点数进行计算
  */
+// TODO: 片源着色器的main方法内的代码，都不太理解。
 const fragment = `
   #ifdef GL_ES
   precision highp float;
