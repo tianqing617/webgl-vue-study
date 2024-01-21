@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/base">Base</RouterLink>
         <RouterLink to="/rough">Rough</RouterLink>
         <RouterLink to="/arc">曲线</RouterLink>
         <RouterLink to="/triangle">三角剖分</RouterLink>

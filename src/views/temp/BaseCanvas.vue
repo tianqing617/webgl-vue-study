@@ -13,6 +13,11 @@ import { onMounted, ref } from 'vue'
 
 function drawMandelbrot(canvas: HTMLCanvasElement) {
   console.log('canvas', canvas)
+  // const renderer = new GlRenderer(canvas);
+
+  // load fragment shader and createProgram
+  // const program = renderer.compileSync(fragment, vertex);
+  // renderer.useProgram(program);
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
