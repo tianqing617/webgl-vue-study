@@ -1,5 +1,6 @@
 <template>
   <div class="grids-view">
+    <!-- 绘制网格 -->
     <canvas ref="canvasRef" width="512" height="512"></canvas>
   </div>
 </template>
@@ -10,6 +11,10 @@
 import GlRenderer from 'gl-renderer'
 import { onMounted, ref } from 'vue'
 
+/**
+ * a_vertexPosition 是一个自定义的变量名，用于表示顶点的位置信息。
+ * 在你的 WebGL 应用程序中，你可以自由选择任何名称作为顶点位置属性的变量名，只要保证在处理顶点数据时保持一致即可。
+ */
 const vertex = `
   attribute vec2 a_vertexPosition;
   attribute vec2 uv;
