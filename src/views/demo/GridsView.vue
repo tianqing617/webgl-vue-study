@@ -63,7 +63,7 @@ function drawGrids(canvas: HTMLCanvasElement) {
   renderer.useProgram(program)
 
   // 1 4 16 32 64
-  renderer.uniforms.rows = 1
+  renderer.uniforms.rows = 2
   // renderer.uniforms.rows = 4
 
   renderer.setMeshData([{
