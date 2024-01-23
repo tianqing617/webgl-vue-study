@@ -35,6 +35,8 @@ const vertex = `
  * 
  * d1 * d2 = 1，则vec3(1.0) 白色（st.x > 0.9 & st.y > 0.1）
  * d1 * d2 = 0，则vec3(0.8) 灰色(st.x < 0.9 & st.y < 0.1)
+ * 
+ * 当一个数从0-1周期性变化时，只要将它乘以整数N，然后再用fract取小数，就能得到N个周期的数值。
 */
 const fragment = `
   #ifdef GL_ES
